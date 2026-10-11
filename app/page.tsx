@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { chatGPTSignInPath, getChatGPTUser } from "./chatgpt-auth";
 import { ArrowRight, Check, ClipboardPaste, Copy, Globe2 } from "lucide-react";
 import AccountMenu from "./account-menu";
@@ -8,7 +9,7 @@ export const dynamic = "force-dynamic";
 export default async function Home() {
   const user = await getChatGPTUser();
   return <main className="landing-shell">
-    <nav className="nav-wrap"><a className="brand who-brand" href="/">Who Follows<span>?</span></a><AccountMenu email={user?.email}/></nav>
+    <nav className="nav-wrap"><Link className="brand who-brand" href="/">Who Follows<span>?</span></Link><AccountMenu email={user?.email}/></nav>
     <section className="hero"><h1>Who appeared?<br/><em>Who disappeared?</em></h1><p className="hero-copy">Compare Followers and Following between two moments. You bring the lists—Who Follows? quietly shows what changed.</p><StartFlow signedIn={Boolean(user)} signInPath={chatGPTSignInPath("/app")}/></section>
     <section className="instruction-section"><p className="instruction-kicker">HOW TO ADD A SNAPSHOT</p><h2>Instagram → Who Follows?</h2><div className="visual-flow">
       <article><div className="visual-window instagram-window"><div className="window-top"><i/><i/><i/></div><Globe2 size={38}/><div className="fake-profile"><b>@profile</b><span>Instagram in your browser</span></div></div><p>Open the profile in Instagram Web.</p></article><ArrowRight className="flow-arrow" size={30}/>
